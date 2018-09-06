@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+  <modelVersion>4.0.0</modelVersion><!--should be set to 4.0.0 -->
+
+  <groupId>com.booking.system.hotel</groupId>
+  <version>0.0.1-SNAPSHOT</version>
+  <artifactId>tmx-parent-pom</artifactId>
+  <packaging>pom</packaging>
+
+  <name>Hotel booking system</name>
+  <description>Simple exercise for a hotel booking system using Spring Microservices</description>
+<parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>2.0.4.RELEASE</version>
+  </parent>
+  <modules>
+    <module>hotel-reservations-service</module>
+  </modules>
+</project>

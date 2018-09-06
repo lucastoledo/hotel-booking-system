@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<modelVersion>4.0.0</modelVersion> <!--should be set to 4.0.0 -->
+	<groupId>com.booking.system.hotel</groupId>
+	<version>0.0.1-SNAPSHOT</version>
+	<artifactId>hotel-reservations-service</artifactId>
+
+
+	<name>Hotel booking system - reservations servise</name>
+	<description>Hotel booking system - reservations service</description>
+
+
+	<!-- Inherit defaults from Spring Boot -->
+	<!-- Required -->
+	<!-- special starter that provides useful Maven defaults. It also provides 
+		a dependency-management section so that you can omit version tags for “blessed” 
+		dependencies. -->
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.0.4.RELEASE</version>
+	</parent>
+	<dependencies>
+		<!--Starter for building web, including RESTful, applications using Spring 
+			MVC. Uses Tomcat as the default embedded container -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<!-- Starter for using Spring Boot’s Actuator which provides production 
+			ready features to help you monitor and manage your application -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+		<!-- Starter for testing Spring Boot applications with libraries including 
+			JUnit, Hamcrest and Mockito -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<java.version>1.8</java.version>
+		<start-class>com.booking.system.hotel.reservations.Application</start-class>
+	</properties>
+
+	<build>
+		<finalName>hotel-reservations-service</finalName> <!--name of the jar  -->
+		<plugins>
+			<!-- packages the project as an executable jar, as an Spring Boot application -->
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<!-- used for running tests at various stages -->
+			<plugin>
+				<artifactId>maven-failsafe-plugin</artifactId>
+				<executions>
+					<execution>
+						<goals>
+							<goal>integration-test</goal>
+							<goal>verify</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>io.fabric8</groupId>
+				<artifactId>docker-maven-plugin</artifactId>
+				<version>0.26.1</version>
+
+				<configuration>
+					<verbose>true</verbose>
+					<images>
+						<image>
+							<name>lucastoledo2010/hotel-reservations-service</name>
+							<build>
+								<dockerFileDir>${project.basedir}/src/main/docker/</dockerFileDir>
+
+								<!--copies Jar to the maven directory (uses Assembly system) -->
+								<assembly>
+									<descriptorRef>artifact</descriptorRef>
+								</assembly>
+								<tags>
+									<tag>latest</tag>
+								</tags>
+							</build>
+						</image>
+					</images>
+				</configuration>
+				<executions>
+					<execution>
+						<phase>package</phase><!--cycle -->
+						<goals>
+							<goal>build</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>mydeploy</id>
+						<phase>deploy</phase><!--cycle -->
+						<goals>
+							<goal>push</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+</project>
