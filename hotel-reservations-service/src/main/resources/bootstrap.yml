@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: hotel-reservations-service
+  profiles:
+    active:
+      default
+  cloud:
+    config:
+      uri: http://hotel-configuration-server:8888

@@ -6,11 +6,11 @@
 	<modelVersion>4.0.0</modelVersion> <!--should be set to 4.0.0 -->
 	<groupId>com.booking.system.hotel</groupId>
 	<version>0.0.1-SNAPSHOT</version>
-	<artifactId>hotel-reservations-service</artifactId>
+	<artifactId>hotel-configuration-server</artifactId>
 
 
-	<name>Hotel booking system - reservations service</name>
-	<description>Hotel booking system - reservations service</description>
+	<name>Hotel booking system - configuration server</name>
+	<description>Hotel booking system - configuration server</description>
 
 
 	<!-- Inherit defaults from Spring Boot -->
@@ -23,6 +23,9 @@
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.0.4.RELEASE</version>
 	</parent>
+	<!-- Spring Cloud Configuration parent BOM - It includes all the third-party 
+		libraries and dependencies used in the cloud project and the version numbers 
+		of the individual projects that make up that version. -->
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
@@ -37,27 +40,20 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>1.8</java.version>
-		<start-class>com.booking.system.hotel.reservations.Application</start-class>
+		<start-class>com.booking.system.hotel.confsvr.ConfigServerApplication</start-class>
 	</properties>
 	<dependencies>
-		<!--Starter for building web, including RESTful, applications using Spring 
-			MVC. Uses Tomcat as the default embedded container -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
-		<!-- Starter for using Spring Boot’s Actuator which provides production 
-			ready features to help you monitor and manage your application -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-actuator</artifactId>
-		</dependency>
-		<!-- spring cloud config server client -->
+		<!-- server and client-side support for externalized configuration in a 
+			distributed system -->
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-config-client</artifactId>
+			<artifactId>spring-cloud-starter-config</artifactId>
 		</dependency>
-
+		<!-- provides an HTTP resource-based API for external configuration -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-config-server</artifactId>
+		</dependency>
 
 		<!-- Starter for testing Spring Boot applications with libraries including 
 			JUnit, Hamcrest and Mockito -->
@@ -66,10 +62,11 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
 	</dependencies>
 
 	<build>
-		<finalName>hotel-reservations-service</finalName> <!--name of the jar -->
+		<finalName>hotel-configuration-server</finalName> <!--name of the jar -->
 		<plugins>
 			<!-- packages the project as an executable jar, as an Spring Boot application -->
 			<plugin>
@@ -97,7 +94,7 @@
 					<verbose>true</verbose>
 					<images>
 						<image>
-							<name>lucastoledo2010/hotel-reservations-service</name>
+							<name>lucastoledo2010/hotel-configuration-server</name>
 							<build>
 								<dockerFileDir>${project.basedir}/src/main/docker/</dockerFileDir>
 
@@ -114,7 +111,7 @@
 				</configuration>
 				<executions>
 					<execution>
-						<phase>package</phase><!--cycle -->
+						<phase>package</phase>
 						<goals>
 							<goal>build</goal>
 						</goals>
@@ -126,3 +123,4 @@
 		</plugins>
 	</build>
 </project>
+

@@ -5,7 +5,7 @@
 
   <groupId>com.booking.system.hotel</groupId>
   <version>0.0.1-SNAPSHOT</version>
-  <artifactId>tmx-parent-pom</artifactId>
+  <artifactId>hotel-booking-system-pom</artifactId>
   <packaging>pom</packaging>
 
   <name>Hotel booking system</name>
@@ -17,5 +17,6 @@
   </parent>
   <modules>
     <module>hotel-reservations-service</module>
+    <module>hotel-configuration-server</module>
   </modules>
 </project>

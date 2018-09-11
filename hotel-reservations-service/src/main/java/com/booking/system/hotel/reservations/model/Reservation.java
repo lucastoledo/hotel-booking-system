@@ -8,6 +8,8 @@ public class Reservation {
 	private String guestId;
 	private LocalDateTime startDate;
 	private LocalDateTime endDate;
+	private String comment;
+	
 	public String getId() {
 		return id;
 	}
@@ -39,6 +41,13 @@ public class Reservation {
 		this.endDate = endDate;
 	}
 	
+	public String getComment() {
+		return comment;
+	}
+	public void setComment(String comment) {
+		this.comment = comment;
+	}
+	
 	public Reservation withId(String id) {
 		this.setId(id);
 		return this;
@@ -57,6 +66,10 @@ public class Reservation {
 	}
 	public Reservation withEndDate(LocalDateTime endDate) {
 		this.setEndDate(endDate);
+		return this;
+	}
+	public Reservation withComment(String comment) {
+		this.setComment(comment);
 		return this;
 	}
 }

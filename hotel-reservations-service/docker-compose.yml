@@ -4,5 +4,5 @@ services:
    hotel-reservations-service:
       image: lucastoledo2010/hotel-reservations-service
       ports:
-         - 8080:8080
+         - '8080:8080'
   
