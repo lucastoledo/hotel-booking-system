@@ -18,7 +18,7 @@ public class ReservationService {
 		
 			LocalDateTime checkIn = LocalDateTime.now();
 		System.out.println("LUCAS: config.getExampleProperty(): " + config.getExampleProperty());
-		return new Reservation().withId("1").withRoomId("roomId-01").withGuestId("guestID-02").withStartDate(checkIn).withEndDate(checkIn.plusDays(2)).withComment(config.getExampleProperty());
+		return new Reservation().withId("1").withRoomId("roomId-01").withGuestId("guestID-02").withStartDate(checkIn).withEndDate(checkIn.plusDays(2)).withComment(config.getExampleProperty()).withEncodedComment(config.getExampleEncoded());
 		
 	}
 }

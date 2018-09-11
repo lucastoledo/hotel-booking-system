@@ -26,5 +26,5 @@ spring:
         git:
           uri: https://github.com/lucastoledo/hotel-booking-system-config-repo/
           searchPaths: hotel-reservations-service
-          username: native-cloud-apps #basic authentication
-          password: 0ffended #basic authentication
+          username: native-cloud-apps #basic authentication #NOT SAFE - MAKE THIS PRIVATE REPOSITORY
+          password: 0ffended #basic authentication #NOT SAFE - MAKE THIS PRIVATE REPOSITORY

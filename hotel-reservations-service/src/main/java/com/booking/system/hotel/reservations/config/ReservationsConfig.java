@@ -8,8 +8,16 @@ public class ReservationsConfig {
 
 	@Value("${example.property}")
 	private String exampleProperty;
+	
+	@Value("${example.encrypted}")
+	private String exampleEncoded;
 
 	public String getExampleProperty() {
 		return exampleProperty;
 	}
+	
+	public String getExampleEncoded() {
+		return exampleEncoded;
+	}
+	
 }

@@ -9,6 +9,7 @@ public class Reservation {
 	private LocalDateTime startDate;
 	private LocalDateTime endDate;
 	private String comment;
+	private String encodedComment;
 	
 	public String getId() {
 		return id;
@@ -48,6 +49,12 @@ public class Reservation {
 		this.comment = comment;
 	}
 	
+	public String getEncodedComment() {
+		return encodedComment;
+	}
+	public void setEncodedComment(String encodedComment) {
+		this.encodedComment = encodedComment;
+	}
 	public Reservation withId(String id) {
 		this.setId(id);
 		return this;
@@ -72,4 +79,9 @@ public class Reservation {
 		this.setComment(comment);
 		return this;
 	}
+	public Reservation withEncodedComment(String encodedComment) {
+		this.setEncodedComment(encodedComment);
+		return this;
+	}
+	
 }

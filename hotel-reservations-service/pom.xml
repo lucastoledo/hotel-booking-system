@@ -62,6 +62,11 @@
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-config</artifactId>
 		</dependency>
+		<!-- RSA extensions to the base spring-security-crypto library. -->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-rsa</artifactId>
+		</dependency>
 
 
 		<!-- Starter for testing Spring Boot applications with libraries including 

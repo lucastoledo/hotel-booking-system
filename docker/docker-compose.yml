@@ -6,6 +6,8 @@ services:
       image: lucastoledo2010/hotel-configuration-server
       ports:
          - 8888:8888
+      environment:
+         ENCRYPT_KEY: "IMSYMMETRIC" #NOT SAFE - MAKE THIS PRIVATE REPOSITORY
 
    hotel-reservations-service:
       image: lucastoledo2010/hotel-reservations-service
@@ -17,4 +19,5 @@ services:
           PROFILE: "dev"
           CONFIGSERVER_URI: "http://hotel-configuration-server:8888"
           CONFIGSERVER_PORT:   "8888"
-  
+          ENCRYPT_KEY: "IMSYMMETRIC" #NOT SAFE - MAKE THIS PRIVATE REPOSITORY
+ 
