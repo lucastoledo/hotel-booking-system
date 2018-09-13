@@ -1,6 +1,5 @@
 package com.booking.system.hotel.reservations.controllers;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,10 +20,7 @@ public class ReservationServiceController {
 
 	@RequestMapping(value="/{roomId}",method = RequestMethod.GET)
 	public List<Reservation> getReservationsForRoom(@PathVariable("hotelId") String hotelId, @PathVariable("roomId") String roomId){
-		List<Reservation> reservations = new ArrayList<>();
-		reservations.add(reservationService.getReservation(hotelId, roomId));
-		return reservations;
+		
+		return reservationService.getReservationsByHotelIdAndRoomId(roomId);
 	}
-	
-	
 }

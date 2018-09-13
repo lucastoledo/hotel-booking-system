@@ -9,6 +9,17 @@ services:
       environment:
          ENCRYPT_KEY: "IMSYMMETRIC" #NOT SAFE - MAKE THIS PRIVATE REPOSITORY
 
+   database:
+      image: postgres:9.5
+      ports:
+         - "5432:5432"
+      volumes:
+         - ./db-init-scripts:/docker-entrypoint-initdb.d
+      environment:
+         POSTGRES_USER: "postgres_dev"
+         POSTGRES_PASSWORD: "p0stgr@s_dev" 
+         POSTGRES_DB: "hotel_booking_system_dev"
+
    hotel-reservations-service:
       image: lucastoledo2010/hotel-reservations-service
       ports:
@@ -19,5 +30,5 @@ services:
           PROFILE: "dev"
           CONFIGSERVER_URI: "http://hotel-configuration-server:8888"
           CONFIGSERVER_PORT:   "8888"
+          DATABASESERVER_PORT: "5432"
           ENCRYPT_KEY: "IMSYMMETRIC" #NOT SAFE - MAKE THIS PRIVATE REPOSITORY
- 

@@ -2,20 +2,39 @@ package com.booking.system.hotel.reservations.model;
 
 import java.time.LocalDateTime;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "reservations")
 public class Reservation {
-	private String id;
-	private String roomId;
-	private String guestId;
-	private LocalDateTime startDate;
-	private LocalDateTime endDate;
-	private String comment;
-	private String encodedComment;
 	
-	public String getId() {
-		return id;
+	@Id
+	@Column(name = "reservation_id", nullable = false)
+	private String reservationId;
+	
+	@Column(name = "room_id", nullable = false)
+	private String roomId;
+	
+	@Column(name = "guest_id", nullable = false)
+	private String guestId;
+	
+	@Column(name = "start_date", nullable = false)
+	private LocalDateTime startDate;
+	
+	@Column(name = "end_date", nullable = false)
+	private LocalDateTime endDate;
+	
+	@Column(name = "comment", nullable = false)
+	private String comment;
+	
+	public String getReservationId() {
+		return reservationId;
 	}
-	public void setId(String id) {
-		this.id = id;
+	public void setReservationId(String reservationId) {
+		this.reservationId = reservationId;
 	}
 	public String getRoomId() {
 		return roomId;
@@ -49,14 +68,8 @@ public class Reservation {
 		this.comment = comment;
 	}
 	
-	public String getEncodedComment() {
-		return encodedComment;
-	}
-	public void setEncodedComment(String encodedComment) {
-		this.encodedComment = encodedComment;
-	}
-	public Reservation withId(String id) {
-		this.setId(id);
+	public Reservation withReservationId(String reservationId) {
+		this.setReservationId(reservationId);
 		return this;
 	}
 	public Reservation withRoomId(String roomId) {
@@ -79,9 +92,4 @@ public class Reservation {
 		this.setComment(comment);
 		return this;
 	}
-	public Reservation withEncodedComment(String encodedComment) {
-		this.setEncodedComment(encodedComment);
-		return this;
-	}
-	
 }

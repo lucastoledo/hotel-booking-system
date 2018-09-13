@@ -18,6 +18,5 @@ public class ReservationsConfig {
 	
 	public String getExampleEncoded() {
 		return exampleEncoded;
-	}
-	
+	}	
 }
