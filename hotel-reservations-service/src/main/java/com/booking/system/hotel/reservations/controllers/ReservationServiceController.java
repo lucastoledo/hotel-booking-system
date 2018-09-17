@@ -21,6 +21,6 @@ public class ReservationServiceController {
 	@RequestMapping(value="/{roomId}",method = RequestMethod.GET)
 	public List<Reservation> getReservationsForRoom(@PathVariable("hotelId") String hotelId, @PathVariable("roomId") String roomId){
 		
-		return reservationService.getReservationsByHotelIdAndRoomId(roomId);
+		return reservationService.getReservationsByHotelIdAndRoomId(hotelId, roomId);
 	}
 }

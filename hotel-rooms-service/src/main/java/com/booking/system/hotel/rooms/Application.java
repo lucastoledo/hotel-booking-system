@@ -1,20 +1,17 @@
-package com.booking.system.hotel.reservations;
+package com.booking.system.hotel.rooms;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.cloud.openfeign.EnableFeignClients;
-/**
- * this is the bootstrap class for the entire microservice
- * @author lucas
- *
- */
+
 @SpringBootApplication
 @RefreshScope //allow a development team to access a /refresh endpoint that will force the Spring Boot application to reread its application configuration
 @EnableFeignClients
-public class Application { 
-	
+public class Application {
+
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
 	}
+
 }

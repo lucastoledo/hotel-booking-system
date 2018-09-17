@@ -6,11 +6,11 @@
 	<modelVersion>4.0.0</modelVersion> <!--should be set to 4.0.0 -->
 	<groupId>com.booking.system.hotel</groupId>
 	<version>0.0.1-SNAPSHOT</version>
-	<artifactId>hotel-reservations-service</artifactId>
+	<artifactId>hotel-service-discovery-server</artifactId>
 
 
-	<name>Hotel booking system - reservations service</name>
-	<description>Hotel booking system - reservations service</description>
+	<name>Hotel booking system - service discovery server</name>
+	<description>Hotel booking system - service discovery server using Eureka</description>
 
 
 	<!-- Inherit defaults from Spring Boot -->
@@ -23,6 +23,9 @@
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.0.4.RELEASE</version>
 	</parent>
+	<!-- Spring Cloud Configuration parent BOM - It includes all the third-party 
+		libraries and dependencies used in the cloud project and the version numbers 
+		of the individual projects that make up that version. -->
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
@@ -37,70 +40,13 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>1.8</java.version>
-		<start-class>com.booking.system.hotel.reservations.Application</start-class>
+		<start-class>com.booking.system.hotel.eurekasvr.EurekaServerApplication</start-class>
 	</properties>
 	<dependencies>
-		<!--Starter for building web, including RESTful, applications using Spring 
-			MVC. Uses Tomcat as the default embedded container -->
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
-		<!-- Starter for using Spring Boot’s Actuator which provides production 
-			ready features to help you monitor and manage your application -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-actuator</artifactId>
-		</dependency>
-		<!-- spring cloud config server client -->
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-config-client</artifactId>
-		</dependency>
-		<!-- server and client-side support for externalized configuration in a 
-			distributed system -->
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-config</artifactId>
-		</dependency>
-		<!-- RSA extensions to the base spring-security-crypto library. -->
-		<dependency>
-			<groupId>org.springframework.security</groupId>
-			<artifactId>spring-security-rsa</artifactId>
-		</dependency>
-		<!-- service discovery eureka that makes this service an eureka server 
-			client -->
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
-		</dependency>
-		<!-- declarative web service client. It makes writing web service clients 
-			easier. -->
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-openfeign</artifactId>
-		</dependency>
-
-		<!-- Spring Data JPA to store and retrieve data in a relational database -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-jpa</artifactId>
-		</dependency>
-		<dependency><!--do I need this one? -->
-			<groupId>com.h2database</groupId>
-			<artifactId>h2</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.postgresql</groupId>
-			<artifactId>postgresql</artifactId>
-			<version>9.3-1104-jdbc41</version>
-		</dependency>
-
-		<!-- 3rd party helper libraries -->
-		<dependency>
-			<groupId>commons-lang</groupId>
-			<artifactId>commons-lang</artifactId>
-			<version>2.6</version>
+			<groupId>org.springframework.cloud</groupId> 
+			<!-- <artifactId>spring-cloud-starter-eureka-server</artifactId> --> <!--book says this one  -->
+			<artifactId>spring-cloud-starter-netflix-eureka-server</artifactId> <!-- Finchley.RELEASE says use this one  -->
 		</dependency>
 
 		<!-- Starter for testing Spring Boot applications with libraries including 
@@ -110,10 +56,11 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
 	</dependencies>
 
 	<build>
-		<finalName>hotel-reservations-service</finalName> <!--name of the jar -->
+		<finalName>hotel-service-discovery-server</finalName> <!--name of the jar -->
 		<plugins>
 			<!-- packages the project as an executable jar, as an Spring Boot application -->
 			<plugin>
@@ -141,7 +88,7 @@
 					<verbose>true</verbose>
 					<images>
 						<image>
-							<name>lucastoledo2010/hotel-reservations-service</name>
+							<name>lucastoledo2010/hotel-service-discovery-server</name>
 							<build>
 								<dockerFileDir>${project.basedir}/src/main/docker/</dockerFileDir>
 
@@ -158,7 +105,7 @@
 				</configuration>
 				<executions>
 					<execution>
-						<phase>package</phase><!--cycle -->
+						<phase>package</phase>
 						<goals>
 							<goal>build</goal>
 						</goals>
@@ -170,3 +117,4 @@
 		</plugins>
 	</build>
 </project>
+

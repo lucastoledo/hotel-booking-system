@@ -1,0 +1,17 @@
+#Default port is 8761
+server:
+   port: 8761
+
+eureka:
+   instance:
+      hostname: hotel-service-discovery-server
+   client:
+      registerWithEureka: false
+      fetchRegistry: false
+   server:
+      waitTimeInMsWhenSyncEmpty: 5
+   serviceUrl:
+      http://${eureka.instance.hostname}:${server.port}/eureka/ #this is the setting http://cloud.spring.io/spring-cloud-static/Finchley.SR1/single/spring-cloud.html#spring-cloud-eureka-server-standalone-mode says
+      #defaultZone: http://localhost:8761 # this is the setting that the book says
+      
+  

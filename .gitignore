@@ -1,3 +1,6 @@
 .project
 .settings/
 hotel-reservations-service/.classpath
+hotel-configuration-server/.classpath
+hotel-service-discovery-server/.classpath
+

@@ -54,6 +54,12 @@
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-config-server</artifactId>
 		</dependency>
+		
+		<!-- service discovery eureka that makes this service an eureka server client  -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+		</dependency>
 
 		<!-- Starter for testing Spring Boot applications with libraries including 
 			JUnit, Hamcrest and Mockito -->

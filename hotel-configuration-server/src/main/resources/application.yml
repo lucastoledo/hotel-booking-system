@@ -21,10 +21,12 @@ server:
 spring:
   cloud:
     config:
+      discovery:
+        enabled: true #register configuration server with service discovery eureka server
       server:
         encrypt.enabled: false
         git:
           uri: https://github.com/lucastoledo/hotel-booking-system-config-repo/
-          searchPaths: hotel-reservations-service
+          searchPaths: hotel-reservations-service, hotel-rooms-service
           username: native-cloud-apps #basic authentication #NOT SAFE - MAKE THIS PRIVATE REPOSITORY
           password: 0ffended #basic authentication #NOT SAFE - MAKE THIS PRIVATE REPOSITORY

@@ -6,6 +6,9 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import org.apache.commons.lang.builder.ToStringBuilder;
 
 @Entity
 @Table(name = "reservations")
@@ -29,6 +32,9 @@ public class Reservation {
 	
 	@Column(name = "comment", nullable = false)
 	private String comment;
+	
+	@Transient	
+	private Room room; 
 	
 	public String getReservationId() {
 		return reservationId;
@@ -68,6 +74,12 @@ public class Reservation {
 		this.comment = comment;
 	}
 	
+	public Room getRoom() {
+		return room;
+	}
+	public void setRoom(Room room) {
+		this.room = room;
+	}
 	public Reservation withReservationId(String reservationId) {
 		this.setReservationId(reservationId);
 		return this;
@@ -91,5 +103,13 @@ public class Reservation {
 	public Reservation withComment(String comment) {
 		this.setComment(comment);
 		return this;
+	}
+	public Reservation withRoom(Room room) {
+		this.setRoom(room);
+		return this;
+	}
+	
+	public String toString() {
+		return ToStringBuilder.reflectionToString(this);
 	}
 }

@@ -17,6 +17,8 @@
   </parent>
   <modules>
     <module>hotel-reservations-service</module>
+    <module>hotel-rooms-service</module>
     <module>hotel-configuration-server</module>
+    <module>hotel-service-discovery-server</module>
   </modules>
 </project>

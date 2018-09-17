@@ -4,7 +4,7 @@ MAINTAINER Lucas Toledo "lucas@someRandomEmailAddress.com"
 
 RUN  apk update && apk upgrade && apk add netcat-openbsd
 
-COPY maven/hotel-reservations-service.jar hotel-reservations-service.jar
+COPY maven/hotel-rooms-service.jar hotel-rooms-service.jar
 
 ADD run.sh run.sh
 RUN chmod +x run.sh

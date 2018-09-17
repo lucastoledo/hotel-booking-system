@@ -1,12 +1,18 @@
 version: "3"
 
 services:
+   hotel-service-discovery-server:
+      image: lucastoledo2010/hotel-service-discovery-server
+      ports:
+         - 8761:8761
 
    hotel-configuration-server:
       image: lucastoledo2010/hotel-configuration-server
       ports:
          - 8888:8888
       environment:
+         EUREKASERVER_URI: "http://hotel-service-discovery-server:8761/eureka/"
+         EUREKASERVER_PORT: "8761"
          ENCRYPT_KEY: "IMSYMMETRIC" #NOT SAFE - MAKE THIS PRIVATE REPOSITORY
 
    database:
@@ -28,7 +34,27 @@ services:
         - hotel-configuration-server
       environment:
           PROFILE: "dev"
+          SERVER_PORT: "8080"
           CONFIGSERVER_URI: "http://hotel-configuration-server:8888"
           CONFIGSERVER_PORT:   "8888"
+          EUREKASERVER_URI: "http://hotel-service-discovery-server:8761/eureka/"
+          EUREKASERVER_PORT: "8761"
           DATABASESERVER_PORT: "5432"
           ENCRYPT_KEY: "IMSYMMETRIC" #NOT SAFE - MAKE THIS PRIVATE REPOSITORY
+   
+   hotel-rooms-service:
+      image: lucastoledo2010/hotel-rooms-service
+      ports:
+         - 8085:8085
+      depends_on:
+        - hotel-configuration-server
+      environment:
+          PROFILE: "dev"
+          SERVER_PORT: "8085"
+          CONFIGSERVER_URI: "http://hotel-configuration-server:8888"
+          CONFIGSERVER_PORT:   "8888"
+          EUREKASERVER_URI: "http://hotel-service-discovery-server:8761/eureka/"
+          EUREKASERVER_PORT: "8761"
+          DATABASESERVER_PORT: "5432"
+          ENCRYPT_KEY: "IMSYMMETRIC" #NOT SAFE - MAKE THIS PRIVATE REPOSITORY
+   

@@ -12,6 +12,6 @@ RUN cd /tmp/ && \
 
 COPY maven/hotel-configuration-server.jar hotel-configuration-server.jar
 
-#EXPOSE 8888
-
-CMD ["java", "-jar","hotel-configuration-server.jar"]
+ADD run.sh run.sh
+RUN chmod +x run.sh
+CMD ./run.sh

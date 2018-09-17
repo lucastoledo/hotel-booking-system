@@ -6,11 +6,11 @@
 	<modelVersion>4.0.0</modelVersion> <!--should be set to 4.0.0 -->
 	<groupId>com.booking.system.hotel</groupId>
 	<version>0.0.1-SNAPSHOT</version>
-	<artifactId>hotel-reservations-service</artifactId>
+	<artifactId>hotel-rooms-service</artifactId>
 
 
-	<name>Hotel booking system - reservations service</name>
-	<description>Hotel booking system - reservations service</description>
+	<name>Hotel booking system - rooms service</name>
+	<description>Hotel booking system - rooms service</description>
 
 
 	<!-- Inherit defaults from Spring Boot -->
@@ -37,7 +37,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>1.8</java.version>
-		<start-class>com.booking.system.hotel.reservations.Application</start-class>
+		<start-class>com.booking.system.hotel.rooms.Application</start-class>
 	</properties>
 	<dependencies>
 		<!--Starter for building web, including RESTful, applications using Spring 
@@ -96,12 +96,6 @@
 			<version>9.3-1104-jdbc41</version>
 		</dependency>
 
-		<!-- 3rd party helper libraries -->
-		<dependency>
-			<groupId>commons-lang</groupId>
-			<artifactId>commons-lang</artifactId>
-			<version>2.6</version>
-		</dependency>
 
 		<!-- Starter for testing Spring Boot applications with libraries including 
 			JUnit, Hamcrest and Mockito -->
@@ -113,7 +107,7 @@
 	</dependencies>
 
 	<build>
-		<finalName>hotel-reservations-service</finalName> <!--name of the jar -->
+		<finalName>hotel-rooms-service</finalName> <!--name of the jar -->
 		<plugins>
 			<!-- packages the project as an executable jar, as an Spring Boot application -->
 			<plugin>
@@ -141,7 +135,7 @@
 					<verbose>true</verbose>
 					<images>
 						<image>
-							<name>lucastoledo2010/hotel-reservations-service</name>
+							<name>lucastoledo2010/hotel-rooms-service</name>
 							<build>
 								<dockerFileDir>${project.basedir}/src/main/docker/</dockerFileDir>
 

@@ -6,4 +6,5 @@ spring:
       default
   cloud:
     config:
-      uri: http://hotel-configuration-server:8888
+      enabled: true
+      #uri: http://hotel-configuration-server:8888
