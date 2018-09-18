@@ -21,7 +21,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.0.4.RELEASE</version>
+		<version>2.0.5.RELEASE</version>
 	</parent>
 	<dependencyManagement>
 		<dependencies>
@@ -79,6 +79,12 @@
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-openfeign</artifactId>
+		</dependency>
+		
+		<!-- Circuit breaker imports -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
 		</dependency>
 
 		<!-- Spring Data JPA to store and retrieve data in a relational database -->

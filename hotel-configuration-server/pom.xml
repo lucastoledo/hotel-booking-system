@@ -21,7 +21,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.0.4.RELEASE</version>
+		<version>2.0.5.RELEASE</version>
 	</parent>
 	<!-- Spring Cloud Configuration parent BOM - It includes all the third-party 
 		libraries and dependencies used in the cloud project and the version numbers 
