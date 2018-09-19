@@ -20,5 +20,6 @@
     <module>hotel-rooms-service</module>
     <module>hotel-configuration-server</module>
     <module>hotel-service-discovery-server</module>
+    <module>hotel-gateway-service-server</module>
   </modules>
 </project>

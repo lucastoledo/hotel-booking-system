@@ -7,6 +7,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.booking.system.hotel.reservations.model.Room;
 
+/**
+ * this class is used in conjunction with service discovery server which will locate where the hotel-rooms-service will live
+ * @author lucas
+ *
+ */
 @FeignClient("hotel-rooms-service") // client name
 public interface RoomsFeignClient {
 

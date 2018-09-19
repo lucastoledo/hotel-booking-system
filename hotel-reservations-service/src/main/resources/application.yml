@@ -1,3 +1,9 @@
+logging:
+    level:
+      com.netflix: WARN
+      org.springframework.web: WARN
+      com.booking.system.hotel: DEBUG
+
 eureka:
   instance:
     preferIpAddress: true #will inform the Eureka service that client wants to be advertised by IP address. if you don't, your client applications won’t properly resolve the location of the hostnames because there will be no DNS entry for that container

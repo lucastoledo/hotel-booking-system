@@ -1,6 +1,7 @@
 version: "3"
 
 services:
+   #eureka server
    hotel-service-discovery-server:
       image: lucastoledo2010/hotel-service-discovery-server
       ports:
@@ -14,6 +15,19 @@ services:
          EUREKASERVER_URI: "http://hotel-service-discovery-server:8761/eureka/"
          EUREKASERVER_PORT: "8761"
          ENCRYPT_KEY: "IMSYMMETRIC" #NOT SAFE - MAKE THIS PRIVATE REPOSITORY
+   
+   hotel-gateway-service-server: #zuul server
+      image: lucastoledo2010/hotel-gateway-service-server
+      ports:
+         - 5555:5555
+      environment:
+         PROFILE: "dev"
+         SERVER_PORT: "5555" 
+         CONFIGSERVER_URI: "http://hotel-configuration-server:8888"
+         CONFIGSERVER_PORT: "8888"
+         EUREKASERVER_URI: "http://hotel-service-discovery-server:8761/eureka/"
+         EUREKASERVER_PORT: "8761"
+         DATABASESERVER_PORT: "5432"
 
    database:
       image: postgres:9.5

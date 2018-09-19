@@ -29,22 +29,16 @@ public class ReservationService {
 			// bulkhead properties
 			threadPoolKey = "reservationsByHotelIdAndRoomIdThreadPool", threadPoolProperties = {
 					@HystrixProperty(name = "coreSize", value = "30"),
-					@HystrixProperty(name = "maxQueueSize", value = "10") }, 
-			//5 properties to customise the circuit breaker process
-			commandProperties = {
-							@HystrixProperty(name = "circuitBreaker.requestVolumeThreshold", value = "10"),
-							@HystrixProperty(name = "circuitBreaker.errorThresholdPercentage", value = "75"),
-							@HystrixProperty(name = "circuitBreaker.sleepWindowInMilliseconds", value = "7000"),
-							@HystrixProperty(name = "metrics.rollingStats.timeInMilliseconds", value = "15000"),
-							@HystrixProperty(name = "metrics.rollingStats.numBuckets", value = "5") })
+					@HystrixProperty(name = "maxQueueSize", value = "10") })
 	public List<Reservation> getReservationsByHotelIdAndRoomId(String hotelId, String roomId) {
 
-		randomlyRunLong();
+//		randomlyRunLong();
 		Room room = roomsFeignClient.getRoom(hotelId, roomId);
 		return reservationRepository.findByRoomId(roomId).stream().map(r -> r.withRoom(room)) // add room to reservation
 				.collect(Collectors.toList());
 	}
 
+	@SuppressWarnings("unused")
 	private List<Reservation> buildFallbackReservationList(String hotelId, String roomId) {
 		List<Reservation> fallbackList = new ArrayList<>();
 		Reservation reservation = new Reservation().withReservationId("00000").withRoomId(roomId)

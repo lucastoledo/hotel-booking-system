@@ -27,6 +27,6 @@ spring:
         encrypt.enabled: false
         git:
           uri: https://github.com/lucastoledo/hotel-booking-system-config-repo/
-          searchPaths: hotel-reservations-service, hotel-rooms-service
+          searchPaths: hotel-reservations-service, hotel-rooms-service, hotel-gateway-service-server
           username: native-cloud-apps #basic authentication #NOT SAFE - MAKE THIS PRIVATE REPOSITORY
           password: 0ffended #basic authentication #NOT SAFE - MAKE THIS PRIVATE REPOSITORY
