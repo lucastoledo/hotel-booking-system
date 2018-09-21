@@ -9,23 +9,28 @@ import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 import com.netflix.zuul.exception.ZuulException;
 
+import brave.Tracer;
+
+/**
+ * add tracer id, correlation Id to the HTTP response for tracking purposes
+ * @author lucas
+ *
+ */
 @Component
 public class PostResponseFilter extends ZuulFilter {
 	private static final int FILTER_ORDER = 1;
 	private static final boolean SHOULD_FILTER = true;
 	private static final Logger logger = LoggerFactory.getLogger(PostResponseFilter.class);
 
-	@Autowired
-	private FilterUtils filterUtils;
-
+	@Autowired	
+	private Tracer tracer;
+	
 	@Override
 	public Object run() throws ZuulException {
 		RequestContext ctx = RequestContext.getCurrentContext();
-
-		logger.debug("lucas: Adding the correlation id to the outbound headers. {}", filterUtils.getCorrelationId());
-		ctx.getResponse().addHeader(FilterUtils.CORRELATION_ID, filterUtils.getCorrelationId());
-
-		logger.debug("lucas: Completing outgoing request for {}.", ctx.getRequest().getRequestURI());
+		
+		logger.info("lucas: tracer.currentSpan().context().traceIdString(): "+tracer.currentSpan().context().traceIdString());
+		ctx.getResponse().addHeader("tmx-correlation-id", tracer.currentSpan().context().traceIdString());
 
 		return null;
 	}
@@ -42,7 +47,7 @@ public class PostResponseFilter extends ZuulFilter {
 
 	@Override
 	public String filterType() {
-		return FilterUtils.POST_FILTER_TYPE;
+		return "post";
 	}
 
 }

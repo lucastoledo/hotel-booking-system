@@ -45,13 +45,7 @@
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-netflix-zuul</artifactId>
 		</dependency>
-		
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-actuator</artifactId>
-		</dependency>
-		
-		
+
 		<!-- service discovery eureka that makes this service an eureka server 
 			client -->
 		<dependency>
@@ -70,16 +64,17 @@
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-config-client</artifactId>
 		</dependency>
-		
-		
 
-		<!-- do i need this one? -->
+		<!--  distributed tracing solution for Spring Cloud -->
 		<dependency>
-			<groupId>org.apache.httpcomponents</groupId>
-			<artifactId>httpclient</artifactId>
-			<version>4.5.2</version>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-sleuth</artifactId>
 		</dependency>
-
+		<!-- added  Open Zipkin dependencies for distributed tracing-->
+	 	<dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-sleuth-zipkin</artifactId>
+        </dependency>
 
 		<!-- Starter for testing Spring Boot applications with libraries including 
 			JUnit, Hamcrest and Mockito -->

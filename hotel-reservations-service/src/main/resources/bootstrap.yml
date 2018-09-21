@@ -7,4 +7,5 @@ spring:
   cloud:
     config:
       enabled: true
-      #uri: http://hotel-configuration-server:8888
+  zipkin:
+     baseUrl:  localhost:9411

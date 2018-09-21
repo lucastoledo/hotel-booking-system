@@ -1,7 +1,0 @@
-version: "3"
-
-services:
-   hotel-configuration-server:
-      image: lucastoledo2010/hotel-configuration-server
-      ports:
-         - 8888:8888

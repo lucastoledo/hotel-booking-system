@@ -15,6 +15,23 @@ services:
          EUREKASERVER_URI: "http://hotel-service-discovery-server:8761/eureka/"
          EUREKASERVER_PORT: "8761"
          ENCRYPT_KEY: "IMSYMMETRIC" #NOT SAFE - MAKE THIS PRIVATE REPOSITORY
+  
+   # The zipkin process services the UI, and also exposes a POST endpoint that
+   # instrumentation can send trace data to. Scribe is enabled by default.
+   zipkin:
+      image: openzipkin/zipkin
+      container_name: zipkin
+      ports:
+         - 9411:9411
+      #environment:
+         #- STORAGE_TYPE=mem
+         # Uncomment to disable scribe
+         # - SCRIBE_ENABLED=false
+         # Uncomment to enable self-tracing
+         # - SELF_TRACING_ENABLED=true
+         # Uncomment to enable debug logging
+         # - JAVA_OPTS=-Dlogging.level.zipkin=DEBUG
+        
    
    hotel-gateway-service-server: #zuul server
       image: lucastoledo2010/hotel-gateway-service-server
@@ -28,7 +45,10 @@ services:
          EUREKASERVER_URI: "http://hotel-service-discovery-server:8761/eureka/"
          EUREKASERVER_PORT: "8761"
          DATABASESERVER_PORT: "5432"
+         ZIPKIN_URI: "http://zipkin:9411"
+         ZIPKIN_PORT: "9411"
 
+  
    database:
       image: postgres:9.5
       ports:
@@ -55,6 +75,8 @@ services:
           EUREKASERVER_PORT: "8761"
           DATABASESERVER_PORT: "5432"
           ENCRYPT_KEY: "IMSYMMETRIC" #NOT SAFE - MAKE THIS PRIVATE REPOSITORY
+          ZIPKIN_URI: "http://zipkin:9411"
+          ZIPKIN_PORT: "9411"
    
    hotel-rooms-service:
       image: lucastoledo2010/hotel-rooms-service
@@ -71,4 +93,12 @@ services:
           EUREKASERVER_PORT: "8761"
           DATABASESERVER_PORT: "5432"
           ENCRYPT_KEY: "IMSYMMETRIC" #NOT SAFE - MAKE THIS PRIVATE REPOSITORY
+          ZIPKIN_URI: "http://zipkin:9411"
+          ZIPKIN_PORT: "9411"
+   
+   logspout: #send all logs to papertrail
+      image: gliderlabs/logspout
+      command: syslog://logs7.papertrailapp.com:31488
+      volumes:
+         - /var/run/docker.sock:/var/run/docker.sock
    

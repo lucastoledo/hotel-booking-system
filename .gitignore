@@ -4,3 +4,5 @@ hotel-reservations-service/.classpath
 hotel-configuration-server/.classpath
 hotel-service-discovery-server/.classpath
 hotel-rooms-service/.classpath
+hotel-rooms-service/.classpath
+hotel-gateway-service-server/.classpath
